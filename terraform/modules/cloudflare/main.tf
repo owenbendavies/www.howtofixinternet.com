@@ -50,3 +50,12 @@ resource "cloudflare_record" "spf" {
 resource "cloudflare_zone" "main" {
   zone = var.site_domain
 }
+
+resource "cloudflare_zone_settings_override" "main" {
+  zone_id = cloudflare_zone.main.id
+
+  settings {
+    cache_level         = "simplified"
+    server_side_exclude = "off"
+  }
+}
