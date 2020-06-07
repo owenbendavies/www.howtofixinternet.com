@@ -28,7 +28,7 @@ resource "cloudflare_record" "site_root" {
   name    = var.site_domain
   proxied = true
   type    = "CNAME"
-  value   = var.site_domain
+  value   = var.target_domain
   zone_id = cloudflare_zone.main.id
 }
 
@@ -36,7 +36,7 @@ resource "cloudflare_record" "site_www" {
   name    = "www"
   proxied = true
   type    = "CNAME"
-  value   = var.site_domain
+  value   = var.target_domain
   zone_id = cloudflare_zone.main.id
 }
 
