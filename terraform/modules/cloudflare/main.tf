@@ -55,7 +55,23 @@ resource "cloudflare_zone_settings_override" "main" {
   zone_id = cloudflare_zone.main.id
 
   settings {
+    always_use_https    = "on"
     cache_level         = "simplified"
     server_side_exclude = "off"
+    ssl                 = "strict"
+
+    minify {
+      css  = "on"
+      html = "on"
+      js   = "on"
+    }
+
+    security_header {
+      enabled            = true
+      include_subdomains = true
+      max_age            = 31536000
+      nosniff            = true
+      preload            = true
+    }
   }
 }
